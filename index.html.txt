@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>مسابقة توقعات المباريات</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      direction: rtl;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 80px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 8px 12px;
+      background-color: #0078D7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>مسابقة توقعات نتائج المباريات</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>الفريق الأول</th>
+        <th>توقعك</th>
+        <th>الفريق الثاني</th>
+        <th>حفظ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src="team1.png" alt="الهلال" width="50"><br>الهلال</td>
+        <td><input type="text" id="prediction1" placeholder="مثلاً 2-1"></td>
+        <td><img src="team2.png" alt="النصر" width="50"><br>النصر</td>
+        <td><button onclick="savePrediction('prediction1')">حفظ</button></td>
+      </tr>
+      <tr>
+        <td><img src="team3.png" alt="الاتحاد" width="50"><br>الاتحاد</td>
+        <td><input type="text" id="prediction2" placeholder="مثلاً 1-1"></td>
+        <td><img src="team4.png" alt="الأهلي" width="50"><br>الأهلي</td>
+        <td><button onclick="savePrediction('prediction2')">حفظ</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function savePrediction(inputId) {
+      const input = document.getElementById(inputId);
+      const value = input.value.trim();
+      if (/^\d{1,2}-\d{1,2}$/.test(value)) {
+        localStorage.setItem(inputId, value);
+        alert("تم حفظ توقعك: " + value);
+      } else {
+        alert("يرجى إدخال التوقع بصيغة صحيحة مثل 2-1");
+     
